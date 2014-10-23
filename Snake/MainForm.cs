@@ -55,8 +55,7 @@ namespace Snake
 
               //  MessageBox.Show(takenRows[i]);
             }
-           
-
+          
         }
     }
 }

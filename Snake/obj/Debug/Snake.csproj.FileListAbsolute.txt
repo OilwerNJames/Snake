@@ -7,3 +7,12 @@
 \\psf\home\documents\visual studio 2012\Projects\Snake\Snake\Snake\bin\Debug\Snake.pdb
 \\psf\home\documents\visual studio 2012\Projects\Snake\Snake\Snake\obj\Debug\Snake.exe
 \\psf\home\documents\visual studio 2012\Projects\Snake\Snake\Snake\obj\Debug\Snake.pdb
+\\psf\Home\Desktop\Förvaring\Github\Snake\Snake\bin\Debug\Snake.exe.config
+\\psf\Home\Desktop\Förvaring\Github\Snake\Snake\obj\Debug\Snake.exe
+\\psf\Home\Desktop\Förvaring\Github\Snake\Snake\obj\Debug\Snake.pdb
+\\psf\Home\Desktop\Förvaring\Github\Snake\Snake\bin\Debug\Snake.exe
+\\psf\Home\Desktop\Förvaring\Github\Snake\Snake\bin\Debug\Snake.pdb
+\\psf\Home\Desktop\Förvaring\Github\Snake\Snake\obj\Debug\Snake.csprojResolveAssemblyReference.cache
+\\psf\Home\Desktop\Förvaring\Github\Snake\Snake\obj\Debug\Snake.MainForm.resources
+\\psf\Home\Desktop\Förvaring\Github\Snake\Snake\obj\Debug\Snake.Properties.Resources.resources
+\\psf\Home\Desktop\Förvaring\Github\Snake\Snake\obj\Debug\Snake.csproj.GenerateResource.Cache
