@@ -10,42 +10,32 @@ namespace Snake
     class Grid
     {
 
-        List<Block> blockList = new List<Block>();
+        BlockArray theBlockArrayClass;
+      
 
-        public void createBlock(int x, int y, string status)
+       // List<Block> blockList = new List<Block>();
+
+        public void createBlock(int x, int y, string status, Block[,] blockArray)
         {
             Block newBlock = new Block(x, y, status);
-            blockList.Add(newBlock);
-
+            blockArray[newBlock.X, newBlock.Y] = newBlock;
         }
 
-        public void updateBlock(int x, int y, string status)
+        public void updateBlock(int x, int y, string status, Block[,] blockArray)
         {
-              Block tempBlock = new Block(x, y, "free");
-
-              int positionOfBlock = blockList.FindIndex(Block => Block.X == x && Block.Y == y);
-
-           Block updatedBlock = blockList.Find(Block => Block.X == x && Block.Y == y);
-            updatedBlock.Status = status;
-
-            blockList[positionOfBlock] = updatedBlock;
-
+            blockArray[x, y].Status = status;
         }
 
-        public void createGrid(string input)
+        public void createGrid(string input, int numberOfXRows, int numberOfYRows, List<string> inputRowList)
         {
-            List<string> inputRowList = new List<string>(Regex.Split(input, Environment.NewLine));
-
-            string[] inputdata = inputRowList[0].Split(',');
-
-            int numberOfXRows = Int32.Parse(inputdata[0]);
-            int numberOfYRows = Int32.Parse(inputdata[1]);
+            theBlockArrayClass = new BlockArray(numberOfXRows, numberOfYRows);
+            theBlockArrayClass.blockArray = new Block[numberOfXRows, numberOfYRows];
 
             for (int x = 0; x < numberOfXRows; x++)
             {
                 for (int y = 0; y < numberOfYRows; y++)
                 {
-                    createBlock(x, y, "free");
+                    createBlock(x, y, "free", theBlockArrayClass.blockArray);
                 }
             }
 
@@ -60,7 +50,7 @@ namespace Snake
                 int x = Int32.Parse(busyBlockData[0]);
                 int y = Int32.Parse(busyBlockData[1]);
 
-                updateBlock(x, y, "red");
+                updateBlock(x, y, "red", theBlockArrayClass.blockArray);
 
 
                 //  MessageBox.Show(takenRows[i]);
@@ -70,12 +60,29 @@ namespace Snake
 
         public int Count()
         {
-            return blockList.Count();
+            int numOfElements = 0;
+
+            for (int row = 0; row < theBlockArrayClass.blockArray.GetLength(0); row++)  // Rad 
+            {
+
+                for (int col = 0; col < theBlockArrayClass.blockArray.GetLength(1); col++) // Kolumn
+                   {
+
+                       if (theBlockArrayClass.blockArray[row, col] != null)
+                       {
+                           if ((theBlockArrayClass.blockArray[row, col].Status == "free") || (theBlockArrayClass.blockArray[row, col].Status == "red"))
+                           {
+                               numOfElements++;
+                           }
+                       }
+                   }
+            }
+            return numOfElements;
         }
 
         public void StartSnake()
         {
-            Snake theSnake = new Snake(blockList); // Börjar läsa av gridden
+           // Snake theSnake = new Snake(blockArray); // Börjar läsa av gridden
         }
 
 
