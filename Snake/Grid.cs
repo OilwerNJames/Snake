@@ -10,14 +10,14 @@ namespace Snake
     class Grid
     {
 
-        BlockArray theBlockArrayClass;
+        BlockArray theBlockArrayObject;
       
 
        // List<Block> blockList = new List<Block>();
 
         public void createBlock(int x, int y, string status, Block[,] blockArray)
         {
-            Block newBlock = new Block(x, y, status);
+            Block newBlock = new Block(x, y, status, false);
             blockArray[newBlock.X, newBlock.Y] = newBlock;
         }
 
@@ -28,14 +28,14 @@ namespace Snake
 
         public void createGrid(string input, int numberOfXRows, int numberOfYRows, List<string> inputRowList)
         {
-            theBlockArrayClass = new BlockArray(numberOfXRows, numberOfYRows);
-            theBlockArrayClass.blockArray = new Block[numberOfXRows, numberOfYRows];
+            theBlockArrayObject = new BlockArray(numberOfXRows, numberOfYRows);
+            theBlockArrayObject.blockArray = new Block[numberOfXRows, numberOfYRows];
 
             for (int x = 0; x < numberOfXRows; x++)
             {
                 for (int y = 0; y < numberOfYRows; y++)
                 {
-                    createBlock(x, y, "free", theBlockArrayClass.blockArray);
+                    createBlock(x, y, "free", theBlockArrayObject.blockArray);
                 }
             }
 
@@ -50,7 +50,7 @@ namespace Snake
                 int x = Int32.Parse(busyBlockData[0]);
                 int y = Int32.Parse(busyBlockData[1]);
 
-                updateBlock(x, y, "red", theBlockArrayClass.blockArray);
+                updateBlock(x, y, "red", theBlockArrayObject.blockArray);
 
 
                 //  MessageBox.Show(takenRows[i]);
@@ -62,15 +62,15 @@ namespace Snake
         {
             int numOfElements = 0;
 
-            for (int row = 0; row < theBlockArrayClass.blockArray.GetLength(0); row++)  // Rad 
+            for (int row = 0; row < theBlockArrayObject.blockArray.GetLength(0); row++)  // Rad 
             {
 
-                for (int col = 0; col < theBlockArrayClass.blockArray.GetLength(1); col++) // Kolumn
+                for (int col = 0; col < theBlockArrayObject.blockArray.GetLength(1); col++) // Kolumn
                    {
 
-                       if (theBlockArrayClass.blockArray[row, col] != null)
+                       if (theBlockArrayObject.blockArray[row, col] != null)
                        {
-                           if ((theBlockArrayClass.blockArray[row, col].Status == "free") || (theBlockArrayClass.blockArray[row, col].Status == "red"))
+                           if ((theBlockArrayObject.blockArray[row, col].Status == "free") || (theBlockArrayObject.blockArray[row, col].Status == "red"))
                            {
                                numOfElements++;
                            }
@@ -82,7 +82,7 @@ namespace Snake
 
         public void StartSnake()
         {
-           // Snake theSnake = new Snake(blockArray); // Börjar läsa av gridden
+            Snake theSnake = new Snake(theBlockArrayObject); // Börjar läsa av gridden
         }
 
 
