@@ -10,6 +10,7 @@ namespace Snake
     {
         List<Block> blockList = new List<Block>();
         string output = "";
+        int i = 0;
          
         public Snake(List<Block> blockList)
         {           
@@ -19,21 +20,25 @@ namespace Snake
 
         private void Go()
         {
-            for (int i = 0; i < blockList.Count(); i++)
-            {
-                GoGo((blockList[i+1]));
-                output = output + "i ";
-            }
+               
+                GoGo((blockList[0]));
+               
         }
 
         private void GoGo(Block currentBlock)
         {
+           
             if (currentBlock != null)
             {
                 if (currentBlock.Status != "red")
                 {
-                   
+                    i = i + 1;
+                    int nextX = currentBlock.X + 1;
+                    currentBlock.X = nextX;
+                    output = output + i;
+                    GoGo(currentBlock);
                 }
+
             }
         }
 

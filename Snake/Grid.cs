@@ -75,7 +75,7 @@ namespace Snake
 
         public void StartSnake()
         {
-            Snake theSnake = new Snake(blockList);
+            Snake theSnake = new Snake(blockList); // Börjar läsa av gridden
         }
 
 

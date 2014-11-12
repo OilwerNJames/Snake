@@ -12,7 +12,7 @@ namespace Snake
 {
     public partial class MainForm : Form
     {
-        Grid newGrid = new Grid();
+        Grid newGrid = new Grid();  // Skapar ny grid
         public MainForm()
         {
             InitializeComponent();
@@ -21,7 +21,7 @@ namespace Snake
         private void buttonCreateGrid_Click(object sender, EventArgs e)
         {
             string input = textBoxGridInstructions.Text;
-            newGrid.createGrid(input);
+            newGrid.createGrid(input);  // Skapar grid beroende på inputen
           
         }
 
@@ -32,7 +32,7 @@ namespace Snake
 
         private void buttonStartSnake_Click(object sender, EventArgs e)
         {
-            newGrid.StartSnake();
+            newGrid.StartSnake();  // Startar Snake
         }
 
 
