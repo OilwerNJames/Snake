@@ -3,33 +3,99 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Snake
 {
     class Grid
     {
 
-        List<Block> blockList = new List<Block>();
+        BlockArray theBlockArrayObject;
+        Snake theSnake;
+      
 
-        public void createBlock(int x, int y, string status)
+       // List<Block> blockList = new List<Block>();
+
+        public void createBlock(int x, int y, string status, Block[,] blockArray)
         {
-            Block newBlock = new Block(x, y, status);
-            blockList.Add(newBlock);
+            Block newBlock = new Block(x, y, status, false);
+            blockArray[newBlock.X, newBlock.Y] = newBlock;
+        }
+
+        public void updateBlock(int x, int y, string status, Block[,] blockArray)
+        {
+            blockArray[x, y].Status = status;
+        }
+
+        public void createGrid(string input, int numberOfXRows, int numberOfYRows, List<string> inputRowList)
+        {
+            theBlockArrayObject = new BlockArray(numberOfXRows, numberOfYRows);
+            theBlockArrayObject.blockArray = new Block[numberOfXRows, numberOfYRows];
+
+            for (int x = 0; x < numberOfXRows; x++)
+            {
+                for (int y = 0; y < numberOfYRows; y++)
+                {
+                    createBlock(x, y, "free", theBlockArrayObject.blockArray);
+                }
+            }
+
+            string[] takenRows = new string[inputRowList.Count()];
+
+            for (int i = 1; i < inputRowList.Count(); i++)
+            {
+                takenRows[i] = inputRowList[i];
+
+                string[] busyBlockData = takenRows[i].Split(',');
+
+                int x = Int32.Parse(busyBlockData[0]);
+                int y = Int32.Parse(busyBlockData[1]);
+
+                updateBlock(x, y, "red", theBlockArrayObject.blockArray);
+
+
+                //  MessageBox.Show(takenRows[i]);
+            }
 
         }
 
-        public void updateBlock(int x, int y, string status)
+        public int Count()
         {
-              Block tempBlock = new Block(x, y, "free");
+            int numOfElements = 0;
 
-              int positionOfBlock = blockList.FindIndex(Block => Block.X == x && Block.Y == y);
+            for (int row = 0; row < theBlockArrayObject.blockArray.GetLength(0); row++)  // Rad 
+            {
 
-           Block updatedBlock = blockList.Find(Block => Block.X == x && Block.Y == y);
-            updatedBlock.Status = status;
+                for (int col = 0; col < theBlockArrayObject.blockArray.GetLength(1); col++) // Kolumn
+                   {
 
-            blockList[positionOfBlock] = updatedBlock;
-
+                       if (theBlockArrayObject.blockArray[row, col] != null)
+                       {
+                           if ((theBlockArrayObject.blockArray[row, col].Status == "free") || (theBlockArrayObject.blockArray[row, col].Status == "red"))
+                           {
+                               numOfElements++;
+                           }
+                       }
+                   }
+            }
+            return numOfElements;
         }
+
+        public void StartSnake()
+        {
+            theSnake = new Snake(theBlockArrayObject); // Börjar läsa av gridden
+        }
+
+        public int getResult()
+        {
+            return theSnake.getResult();
+        }
+
+        public List<Block> getVisitedBlockList()
+        {
+            return theSnake.getVisitedBlockList();
+        }
+
 
     }
 }

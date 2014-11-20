@@ -5,58 +5,73 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace Snake
 {
     public partial class MainForm : Form
     {
-        Grid newGrid = new Grid();
+        Grid newGrid = new Grid();  // Skapar ny grid
+
         public MainForm()
         {
             InitializeComponent();
         }
 
+       
+
         private void buttonCreateGrid_Click(object sender, EventArgs e)
         {
             string input = textBoxGridInstructions.Text;
 
-            List<string> inputRowList = new List<string>(Regex.Split(input, Environment.NewLine));
 
+            List<string> inputRowList = new List<string>(Regex.Split(input, Environment.NewLine));
 
             string[] inputdata = inputRowList[0].Split(',');
 
             int numberOfXRows = Int32.Parse(inputdata[0]);
             int numberOfYRows = Int32.Parse(inputdata[1]);
 
-            for (int x = 0; x < numberOfXRows; x++)
+            newGrid.createGrid(input, numberOfXRows, numberOfYRows, inputRowList);  // Skapar grid beroende på inputen
+
+          
+        }
+
+        private void buttonCountBlocks_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(newGrid.Count().ToString());
+        }
+
+        private void buttonStartSnake_Click(object sender, EventArgs e)
+        {
+            newGrid.StartSnake();  // Startar Snake
+        }
+
+        private void buttonCheckResult_Click(object sender, EventArgs e)
+        {
+
+            if (newGrid.getResult() == 1)
+            {
+                string temp = "";
+                for (int i = 0; i < newGrid.getVisitedBlockList().Count(); i++)
 			{
-                for (int y = 0; y < numberOfYRows; y++)
-                {
-                    newGrid.createBlock(x, y, "free");
-                }
+                temp += newGrid.getVisitedBlockList()[i].X;
+                temp += newGrid.getVisitedBlockList()[i].Y;
+                temp += ",  ";
 			}
 
-            string[] takenRows = new string[inputRowList.Count()];
-
-            for (int i = 1; i < inputRowList.Count(); i++)
-            {
-                takenRows[i] = inputRowList[i];
-
-                string[] busyBlockData = takenRows[i].Split(',');
-
-                int x = Int32.Parse(busyBlockData[0]);
-                int y = Int32.Parse(busyBlockData[1]);
-
-                 newGrid.updateBlock(x, y, "red");
-
-
-              //  MessageBox.Show(takenRows[i]);
+                MessageBox.Show("Succsess! besökta block: " + temp);
             }
-           
-
+            else
+            {
+                MessageBox.Show("Nope!");
+            }
         }
+
+
+
+    
     }
 }
