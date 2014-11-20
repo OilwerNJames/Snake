@@ -25,3 +25,6 @@ M:\Snake-Oilwer-bransch\Snake-Oilwer-bransch\Snake\obj\Debug\Snake.csprojResolve
 M:\Snake-Oilwer-bransch\Snake-Oilwer-bransch\Snake\obj\Debug\Snake.MainForm.resources
 M:\Snake-Oilwer-bransch\Snake-Oilwer-bransch\Snake\obj\Debug\Snake.Properties.Resources.resources
 M:\Snake-Oilwer-bransch\Snake-Oilwer-bransch\Snake\obj\Debug\Snake.csproj.GenerateResource.Cache
+C:\Users\James\Documents\GitHub\Snake\Snake\bin\Debug\Snake.exe.config
+C:\Users\James\Documents\GitHub\Snake\Snake\obj\Debug\Snake.exe
+C:\Users\James\Documents\GitHub\Snake\Snake\obj\Debug\Snake.pdb
