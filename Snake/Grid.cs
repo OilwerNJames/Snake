@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Grid.cs 2014 11 27 Oliver Ahlberg, James Camps
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
